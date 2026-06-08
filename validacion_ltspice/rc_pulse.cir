@@ -1,0 +1,13 @@
+* rc_pulse.cir
+* Respuesta al PULSO de 1 UI (= 250 ps a 4 GBaud) del canal RC N=5.
+* Muestra el ensanchamiento del pulso (ISI) que motiva la ecualizacion.
+.include bloques.lib
+.param Tui=250p
+
+Vin in 0 PULSE(0 1 0.5n 1p 1p {Tui} 100n)
+Xrc in out rc_n5
+
+.tran 0 4n 0 1p
+.save V(in) V(out)
+.backanno
+.end

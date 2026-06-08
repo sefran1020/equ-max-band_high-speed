@@ -1,0 +1,14 @@
+* disp_bode.cir
+* Validacion en FRECUENCIA del canal dispersivo en LTspice (vectorfit del .s2p)
+* contra el Touchstone original. Requiere:  python vectorfit_s2p.py
+* (El ojo dispersivo NO se hace en LTspice: skin ~ sqrt(f) no es racional.)
+.include disp_lines.lib
+
+Vin in 0 AC 1
+Xfr4 in o_fr4 disp_fr4
+Xmeg in o_meg disp_meg
+
+.ac dec 200 1e7 4e10
+.save V(o_fr4) V(o_meg)
+.backanno
+.end

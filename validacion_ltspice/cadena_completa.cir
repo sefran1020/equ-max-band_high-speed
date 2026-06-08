@@ -1,0 +1,40 @@
+* cadena_completa.cir
+* Cadena de enlace completa en LTspice (transitorio), para el diagrama de ojo:
+*
+*   TX(PWL) -> FFE -> CANAL -> (+ ruido pre-CTLE) -> CTLE -> RX-LPF -> out
+*
+* La forma de onda PAM-4 de TX y el ruido se generan en Python para que el
+* PRBS coincida EXACTAMENTE con el pipeline del articulo:
+*     python generar_tx_pwl.py
+* eso crea tx.pwl, ruido.pwl y tx_meta.inc (define Tui y TSTOP).
+* Despues:  diagrama de ojo y cruce con Python -> python eye_desde_ltspice.py
+.include bloques.lib
+.include tx_meta.inc          ; define .param Tui y .param TSTOP
+
+.param ANOISE=1              ; 1 = ruido pre-CTLE activo ; 0 = ojo limpio
+
+* --- Transmisor: forma de onda PAM-4 exacta del pipeline Python ---
+Vtx tx 0 PWL file=tx.pwl
+
+* --- FFE de transmision (3 taps, espaciado Tui) ---
+Xffe tx a ffe PARAMS: Tui={Tui}
+
+* --- Canal: RC distribuido N=5 (modelo central del articulo) -------------- *
+* El ojo en transitorio se valida sobre el canal RC. Los canales dispersivos
+* (FR-4/Megtron) NO se simulan aqui en .tran: la perdida pelicular ~ sqrt(f)
+* es no-racional y la dielectrica exige 'j' en la Laplace; su validacion en
+* LTspice es en FRECUENCIA (disp_bode.cir) y su ojo se obtiene en Python.
+Xch a b rc_n5
+
+* --- Ruido referido a la entrada del RX, ANTES del CTLE (sigma=0.10) ---
+Vn nnode 0 PWL file=ruido.pwl
+Bsum c 0 V=V(b) + ANOISE*V(nnode)
+
+* --- CTLE + LPF de RX ---
+Xctle c d ctle
+Xrx   d out rxlpf
+
+.tran 0 {TSTOP} 0 2p
+.save V(tx) V(out)
+.backanno
+.end

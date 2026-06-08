@@ -1,0 +1,47 @@
+%% Master table of simulation parameters (reproducibility).
+\begin{table*}[!t]
+\caption{Complete set of test-bench parameters (reproducibility).}
+\label{tab:params}
+\centering
+\footnotesize
+\begin{tabular}{p{0.20\textwidth} p{0.36\textwidth} p{0.36\textwidth}}
+\hline
+\textbf{Group} & \textbf{Parameter} & \textbf{Value} \\
+\hline
+\multirow{3}{*}{RC channel}
+ & Total resistance/capacitance; time constant & $R_t=80\,\Omega$, $C_t=5\,\mathrm{pF}$, $\tau=R_tC_t=400\,\mathrm{ps}$ \\
+ & Ladder approximation; $-3$~dB bandwidth & $N=5$ R--C cells (state space); $\approx0.97\,\mathrm{GHz}$ \\
+ & Analytical reference transfer function & $H(s)=1/\cosh(\sqrt{s\,R_tC_t})$ \\
+\hline
+\multirow{5}{*}{Physical lines (RLGC)}
+ & Microstrip geometry (common) & $Z_0=50\,\Omega$, width $w=150\,\mu\mathrm{m}$, thickness $t=35\,\mu\mathrm{m}$ (1~oz) \\
+ & FR-4 / Megtron~6 substrate & $D_k=4.3$, $\tan\delta=0.020$ / $D_k=3.6$, $\tan\delta=0.004$ \\
+ & $f$-dependent losses & $R(f)=\sqrt{R_{dc}^2+(k_s\sqrt{f})^2}$, $k_s=\sqrt{\pi\mu_0/\sigma}/w$; $G(f)=2\pi f C\tan\delta$ \\
+ & Lengths (\textit{equal\_il} criterion) & FR-4 $22.9''$, Megtron~6 $36.9''$ (match RC IL at Nyquist) \\
+ & Length (\textit{fixed} criterion); reference IL & $10''$ both; IL${=}7.38\,\mathrm{dB}$ at $2\,\mathrm{GHz}$ \\
+\hline
+\multirow{4}{*}{Source and sampling}
+ & Pattern; polynomial & PRBS23, feedback on taps $[23,18]$, fixed seed \\
+ & Symbols per realization; oversampling & $N_{\mathrm{sym}}=1000$; $\mathrm{sps}=32$ ($F_s=32\,R_s$) \\
+ & Realizations; scheme & $30$; disjoint PRBS window per realization + paired noise \\
+ & Noise seed (realization $r$) & $1000+r$ (identical across channels/configurations) \\
+\hline
+\multirow{2}{*}{Receiver}
+ & Input-referred AWGN (pre-CTLE) & $\sigma_{in}=0.10\,\mathrm{V}$ \\
+ & Finite-bandwidth filter & 3rd-order Butterworth, $f_c=R_s$ \\
+\hline
+\multirow{3}{*}{Equalization}
+ & FFE (3 taps) $[c_{pre},c_{main},c_{post}]$; normalization & $[0,\,1,\,-0.301]$; amplitude $\sum_i|c_i|=1$ \\
+ & CTLE (1 zero, 2 poles) & $A_{DC}=2.5$, $\omega_z=2\pi\!\cdot\!2.35\,\mathrm{GHz}$, $\omega_{p1}=2\pi\!\cdot\!15$, $\omega_{p2}=2\pi\!\cdot\!30\,\mathrm{GHz}$ \\
+ & DFE & 2 post-cursors; data-aided (least squares on aligned samples) \\
+\hline
+\multirow{2}{*}{Alignment / DoE}
+ & Sampling-phase selection & coarse delay by FFT + optimal phase $0..\mathrm{sps}{-}1$ by correlation \\
+ & DoE-LHS: ranges / samples / seeds & $\omega_z\!\in\![1,10]\,\mathrm{GHz}$, $c_{post}\!\in\![-0.40,-0.05]$, $A_{DC}\!\in\![1,3]$; $30$ (re-DoE) / $24$ (joint); seeds $42$ / $11$ \\
+\hline
+\multirow{2}{*}{BER metric}
+ & Viability threshold; interpolation; floor & pre-FEC $\mathrm{BER}\le10^{-2}$; linear in $\log_{10}(\mathrm{BER})$; report $10^{-12}$ \\
+ & Estimator & semi-analytical ($Q$ function, per-level Gaussian assumption) \\
+\hline
+\end{tabular}
+\end{table*}

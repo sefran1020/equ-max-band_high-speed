@@ -1,0 +1,13 @@
+* rc_escalera_N5.cir
+* Respuesta al ESCALON del canal RC distribuido N=5 (modelo del articulo).
+* Salida n5 (extremo abierto) tiende a 1 (H(DC)=1): valida la escalera.
+* Para el Bode usa rc_bode.cir; para el pulso, rc_pulse.cir.
+.include bloques.lib
+
+Vin in 0 PULSE(0 1 0 1p 1p 50n 100n)
+Xrc in out rc_n5
+
+.tran 0 3n 0 1p
+.save V(in) V(out)
+.backanno
+.end

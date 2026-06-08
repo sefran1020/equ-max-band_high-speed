@@ -1,0 +1,13 @@
+canal,long_pulg,escenario,BER,apertura_ojo_V,estado
+RC (cosh),-,A sinEQ,4.16e-02,-1.379,cerrado
+RC (cosh),-,B FFE,2.89e-40,0.849,ABIERTO
+RC (cosh),-,C FFE+CTLE,2.61e-05,0.74,ABIERTO
+RC (cosh),-,D +DFE,3.60e-13,1.776,ABIERTO
+FR-4,22.9,A sinEQ,4.32e-03,-0.25,cerrado
+FR-4,22.9,B FFE,1.46e-02,-0.466,cerrado
+FR-4,22.9,C FFE+CTLE,5.53e-02,-3.141,cerrado
+FR-4,22.9,D +DFE,6.60e-07,0.974,ABIERTO
+Megtron 6,36.9,A sinEQ,2.26e-03,-0.125,cerrado
+Megtron 6,36.9,B FFE,1.60e-02,-0.484,cerrado
+Megtron 6,36.9,C FFE+CTLE,6.19e-02,-3.282,cerrado
+Megtron 6,36.9,D +DFE,2.79e-03,-0.383,cerrado

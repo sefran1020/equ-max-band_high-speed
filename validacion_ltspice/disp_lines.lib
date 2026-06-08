@@ -1,0 +1,16 @@
+* disp_lines.lib - canales dispersivos (vectorfit de los .s2p)
+* Generado por vectorfit_s2p.py. Uso en cadena_completa.cir:
+*   .include disp_lines.lib   y   Xch a b disp_fr4|disp_meg
+
+.subckt disp_fr4 in out
+.param Td=1.379242e-09 W0=6.28318531e+10
+B1 nr 0 V=V(in) Laplace=((0.98318775+((0.34919657+((-303.43941+((-6.6185994+((1825.1662+((-1.9851545+(85.087281)*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))/((1+((46.283953+((696.75079+((3840.4339+((9030.5462+((8820.1543+(2992.7618)*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))
+B2 out 0 V=delay(V(nr),Td,{2*Td})
+.ends disp_fr4
+
+.subckt disp_meg in out
+.param Td=1.284935e-09 W0=6.28318531e+10
+B1 nr 0 V=V(in) Laplace=((0.98385717+((0.46218961+((-177.24736+((-6.603224+((600.72899+((1.7621184+(-33.24191)*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))/((1+((33.942901+((365.72304+((1349.1439+((2017.8977+((1161.2395+(223.1194)*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))*(s/W0)))
+B2 out 0 V=delay(V(nr),Td,{2*Td})
+.ends disp_meg
+

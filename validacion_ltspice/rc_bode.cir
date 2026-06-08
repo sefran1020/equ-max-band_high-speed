@@ -1,0 +1,12 @@
+* rc_bode.cir
+* Respuesta en FRECUENCIA (Bode) del canal RC N=5: 10 MHz .. 50 GHz.
+* Se cruza contra modelo_rc.CanalRCEscalera.H(f) con comparar_bode.py.
+.include bloques.lib
+
+Vin in 0 AC 1
+Xrc in out rc_n5
+
+.ac dec 300 1e7 5e10
+.save V(out)
+.backanno
+.end

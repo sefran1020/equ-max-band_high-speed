@@ -1,0 +1,16 @@
+# ISOLATED environment for Recommendation 01 (realistic physical channel model).
+# Does NOT use the system Python. Create a dedicated virtual environment:
+#
+#   python -m venv .venv
+#   .\.venv\Scripts\Activate.ps1      # PowerShell (Windows)
+#   pip install -r requirements.txt
+#   python generar_comparativa.py
+#
+# Recommended Python: 3.11 (conceptually tested on 3.10-3.13).
+# Minimal dependencies: numerical computation and plotting only; no pyDOE or Jupyter.
+# (The code uses only numpy and matplotlib; scipy is included commented out in case
+#  the model is extended with advanced fitting/interpolation.)
+
+numpy>=1.24,<3
+matplotlib>=3.7
+# scipy>=1.10        # optional: uncomment if curve fitting / S-params are added

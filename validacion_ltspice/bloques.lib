@@ -1,0 +1,64 @@
+* bloques.lib - Subcircuitos de la cadena de enlace para LTspice.
+* Parametros TOMADOS LITERALMENTE del pipeline Python (parametros.py /
+* cadena_enlace.py / modelo_rc.py) para que la validacion sea coherente.
+*
+* Bloques:
+*   rc_n5   : canal RC distribuido de 5 celdas (CanalRCEscalera 80ohm/5pF/N=5)
+*   ctle    : ecualizador de RX por funcion de transferencia (Laplace)
+*   rxlpf   : filtro paso-bajo de RX (Butterworth 3er orden, causal)
+*   ffe     : ecualizador FFE de TX de 3 taps por linea de retardo
+
+* ===================================================================== *
+* Canal RC distribuido N=5  ==  modelo_rc.CanalRCEscalera(80, 5e-12, 5)
+*   R_total = 80 ohm  -> 5 segmentos de R_seg = 16 ohm
+*   C_total = 5 pF    -> 5 capacitores de C_seg = 1 pF a tierra
+*   Extremo abierto (salida en el ultimo nodo).  H(DC) = 1.
+* ===================================================================== *
+.subckt rc_n5 in out
+.param Rseg=16 Cseg=1p
+R1 in  a1  {Rseg}
+C1 a1  0   {Cseg}
+R2 a1  a2  {Rseg}
+C2 a2  0   {Cseg}
+R3 a2  a3  {Rseg}
+C3 a3  0   {Cseg}
+R4 a3  a4  {Rseg}
+C4 a4  0   {Cseg}
+R5 a4  out {Rseg}
+C5 out 0   {Cseg}
+.ends rc_n5
+
+* ===================================================================== *
+* CTLE  ==  cadena_enlace.ctle_response()
+*   H(s) = Adc * (1 + s/wz) / [ (1 + s/wp1) (1 + s/wp2) ]
+*   Adc = 2.5 ; fz = 2.35 GHz ; fp1 = 15 GHz ; fp2 = 30 GHz
+*   (wz se heredo del co-diseno DoE: W_Z_RC = 2*pi*2.35e9)
+* ===================================================================== *
+.subckt ctle in out
+.param Adc=2.5 wz=2*pi*2.35e9 wp1=2*pi*15e9 wp2=2*pi*30e9
+B1 out 0 V=V(in) Laplace=Adc*(1+s/wz)/((1+s/wp1)*(1+s/wp2))
+.ends ctle
+
+* ===================================================================== *
+* RX LPF  ==  cadena_enlace.aplicar_rx_lpf (Butterworth orden 3)
+*   fc = Rs (tasa de simbolo). A 4 GBaud -> fc = 4 GHz.
+*   NOTA: el pipeline usa filtfilt (fase cero). Aqui es CAUSAL (un solo
+*   paso), que es lo realizable; el gemelo de Python para comparar con
+*   LTspice tambien usa la version causal (ver eye_desde_ltspice.py).
+*   Butterworth 3er orden normalizado: 1/((s+1)(s^2+s+1)) con s->s/wc.
+* ===================================================================== *
+.subckt rxlpf in out
+.param fc=4e9 wc=2*pi*fc
+B1 out 0 V=V(in) Laplace=1/((s/wc+1)*((s/wc)*(s/wc)+(s/wc)+1))
+.ends rxlpf
+
+* ===================================================================== *
+* FFE de TX  ==  cadena_enlace.aplicar_ffe(s, 0, 1, -0.301)
+*   taps = [c_pre, c_main, c_post] = [0, 1, -0.301], normalizados por
+*   Sum|taps| = 1.301.  lfilter -> y[n] = (c_main*x[n-1] + c_post*x[n-2])/norm
+*   En tiempo continuo sobre la escalera PAM = retardos de 1 y 2 UI.
+*   Tui debe pasarse como parametro al instanciar (UI = 1/baud).
+* ===================================================================== *
+.subckt ffe in out PARAMS: Tui=250p cpre=0 cmain=1 cpost=-0.301 norm=1.301
+B1 out 0 V=(cpre*V(in) + cmain*delay(V(in),Tui,{2*Tui}) + cpost*delay(V(in),{2*Tui},{2*Tui}))/norm
+.ends ffe

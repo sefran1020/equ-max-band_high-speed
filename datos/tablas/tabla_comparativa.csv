@@ -1,0 +1,4 @@
+canal,substrato,long_pulg,f_3dB_GHz,atten_Nyq_dB_in,IL_Nyq_dB,pico_pulso_V,fwhm_ps
+RC difusivo (cosh),-,-,0.966,-,7.38,0.7573,290.0
+Línea TX dispersiva,FR-4,22.89,-,0.322,7.38,0.6312,270.0
+Línea TX dispersiva,Megtron 6,36.92,-,0.2,7.38,0.5989,262.0

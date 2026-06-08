@@ -1,0 +1,25 @@
+criterio,canal,long_pulg,config,viable_1e-02,viable_1e-03,viable_1e-04
+equal_il,RC (cosh),-,Sin EQ,3.69±0.02,3.12±0.04,2.56±0.05
+equal_il,RC (cosh),-,FFE+CTLE,15.22±0.35,12.18±0.28,10.74±0.21
+equal_il,RC (cosh),-,FFE+CTLE+DFE,19.39±0.43,15.42±0.25,13.46±0.24
+equal_il,RC N=5,-,Sin EQ,2.95±0.05,2.50±0.00,2.49±0.00
+equal_il,RC N=5,-,FFE+CTLE,9.80±0.18,8.15±0.10,7.28±0.13
+equal_il,RC N=5,-,FFE+CTLE+DFE,13.75±0.30,11.12±0.17,9.84±0.11
+equal_il,FR-4,22.9,Sin EQ,4.66±0.13,3.66±0.07,3.13±0.10
+equal_il,FR-4,22.9,FFE+CTLE,9.34±0.15,6.82±0.14,5.49±0.19
+equal_il,FR-4,22.9,FFE+CTLE+DFE,9.73±0.15,7.01±0.17,5.69±0.19
+equal_il,Megtron 6,36.9,Sin EQ,5.23±0.16,3.76±0.10,3.11±0.14
+equal_il,Megtron 6,36.9,FFE+CTLE,10.92±0.28,7.34±0.27,5.57±0.23
+equal_il,Megtron 6,36.9,FFE+CTLE+DFE,11.87±0.46,7.55±0.31,5.76±0.27
+fixed,RC (cosh),-,Sin EQ,3.69±0.02,3.12±0.04,2.56±0.05
+fixed,RC (cosh),-,FFE+CTLE,15.22±0.35,12.18±0.28,10.74±0.21
+fixed,RC (cosh),-,FFE+CTLE+DFE,19.39±0.43,15.42±0.25,13.46±0.24
+fixed,RC N=5,-,Sin EQ,2.95±0.05,2.50±0.00,2.49±0.00
+fixed,RC N=5,-,FFE+CTLE,9.80±0.18,8.15±0.10,7.28±0.13
+fixed,RC N=5,-,FFE+CTLE+DFE,13.75±0.30,11.12±0.17,9.84±0.11
+fixed,FR-4,10.0,Sin EQ,12.78±0.28,9.89±0.21,8.46±0.18
+fixed,FR-4,10.0,FFE+CTLE,13.98±0.37,11.43±0.18,9.76±0.25
+fixed,FR-4,10.0,FFE+CTLE+DFE,27.16±0.47,18.97±0.82,14.57±0.57
+fixed,Megtron 6,10.0,Sin EQ,40.06±1.28,29.37±0.93,24.34±0.79
+fixed,Megtron 6,10.0,FFE+CTLE,16.31±0.19,12.76±0.21,11.33±0.07
+fixed,Megtron 6,10.0,FFE+CTLE+DFE,64.00±0.00(sat),63.98±0.08(sat),56.42±1.69

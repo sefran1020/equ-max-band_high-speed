@@ -1,0 +1,5 @@
+criterio,canal,long_pulg,D_EQ-RC,D_C-opt,D_conjunta,wz_GHz_conj,A_DC_conj,c_post_conj
+equal_il,FR-4,22.9,9.7±0.2,9.6±0.2,9.9±0.2,1.56,2.62,-0.159
+equal_il,Megtron 6,36.9,11.8±0.3,12.1±0.4,12.1±0.4,3.81,2.79,-0.334
+fixed,FR-4,10.0,27.3±0.4,25.1±0.3,28.2±0.4,1.56,2.62,-0.159
+fixed,Megtron 6,10.0,32.0±0.0,32.0±0.0,32.0±0.0,6.81,2.04,-0.247

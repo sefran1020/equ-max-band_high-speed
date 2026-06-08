@@ -1,0 +1,15 @@
+# Entorno conda AISLADO para la Recomendación 01.
+# NO toca el Python del sistema. Crear/activar con:
+#
+#   conda env create -f environment.yml
+#   conda activate canal-fisico-rec01
+#   python generar_comparativa.py
+#
+name: canal-fisico-rec01
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.24
+  - matplotlib>=3.7
+  # - scipy>=1.10        # opcional (ver requirements.txt)

@@ -1,0 +1,12 @@
+* ctle_bode.cir
+* Respuesta en frecuencia del CTLE (pico de ecualizacion ~ fz=2.35 GHz).
+* Se cruza contra cadena_enlace.ctle_response(f) con comparar_bode.py.
+.include bloques.lib
+
+Vin in 0 AC 1
+Xc in out ctle
+
+.ac dec 300 1e7 5e10
+.save V(out)
+.backanno
+.end
