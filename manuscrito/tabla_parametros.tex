@@ -17,8 +17,8 @@
  & Microstrip geometry (common) & $Z_0=50\,\Omega$, width $w=150\,\mu\mathrm{m}$, thickness $t=35\,\mu\mathrm{m}$ (1~oz) \\
  & FR-4 / Megtron~6 substrate & $D_k=4.3$, $\tan\delta=0.020$ / $D_k=3.6$, $\tan\delta=0.004$ \\
  & $f$-dependent losses & $R(f)=\sqrt{R_{dc}^2+(k_s\sqrt{f})^2}$, $k_s=\sqrt{\pi\mu_0/\sigma}/w$; $G(f)=2\pi f C\tan\delta$ \\
- & Lengths (\textit{equal\_il} criterion) & FR-4 $22.9''$, Megtron~6 $36.9''$ (match RC IL at Nyquist) \\
- & Length (\textit{fixed} criterion); reference IL & $10''$ both; IL${=}7.38\,\mathrm{dB}$ at $2\,\mathrm{GHz}$ \\
+ & Lengths (\textit{equal\_il} criterion) & FR-4 $22.9''$, Megtron~6 $36.9''$ (match RC IL${=}7.38\,\mathrm{dB}$ at $2\,\mathrm{GHz}$) \\
+ & Length (\textit{fixed} criterion) & $10''$ both \\
 \hline
 \multirow{4}{*}{Source and sampling}
  & Pattern; polynomial & PRBS23, feedback on taps $[23,18]$, fixed seed \\
@@ -31,7 +31,7 @@
  & Finite-bandwidth filter & 3rd-order Butterworth, $f_c=R_s$ \\
 \hline
 \multirow{3}{*}{Equalization}
- & FFE (3 taps) $[c_{pre},c_{main},c_{post}]$; normalization & $[0,\,1,\,-0.301]$; amplitude $\sum_i|c_i|=1$ \\
+ & FFE (3 taps) $[c_{pre},c_{main},c_{post}]$; normalization & relative $[0,\,1,\,-0.301]$; scaled to amplitude $\sum_i|c_i|=1$ \\
  & CTLE (1 zero, 2 poles) & $A_{DC}=2.5$, $\omega_z=2\pi\!\cdot\!2.35\,\mathrm{GHz}$, $\omega_{p1}=2\pi\!\cdot\!15$, $\omega_{p2}=2\pi\!\cdot\!30\,\mathrm{GHz}$ \\
  & DFE & 2 post-cursors; data-aided (least squares on aligned samples) \\
 \hline

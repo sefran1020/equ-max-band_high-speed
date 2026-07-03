@@ -1,4 +1,4 @@
-# ISOLATED environment for Recommendation 01 (realistic physical channel model).
+# Isolated environment for the reproducibility code.
 # Does NOT use the system Python. Create a dedicated virtual environment:
 #
 #   python -m venv .venv
@@ -7,10 +7,9 @@
 #   python generar_comparativa.py
 #
 # Recommended Python: 3.11 (conceptually tested on 3.10-3.13).
-# Minimal dependencies: numerical computation and plotting only; no pyDOE or Jupyter.
-# (The code uses only numpy and matplotlib; scipy is included commented out in case
-#  the model is extended with advanced fitting/interpolation.)
+# Dependencies cover the main scripts and the archived notebook checkpoints.
 
 numpy>=1.24,<3
+scipy>=1.10
 matplotlib>=3.7
-# scipy>=1.10        # optional: uncomment if curve fitting / S-params are added
+pyDOE>=0.3.8      # used by archived notebook checkpoints; main scripts use internal LHS

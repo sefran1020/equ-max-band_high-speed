@@ -9,7 +9,7 @@ import scipy.signal as signal
 import scipy.fft as fft
 from scipy.special import erfc
 import matplotlib.pyplot as plt
-from pydoe import lhs
+from pyDOE import lhs
 
 print("Librerías cargadas exitosamente.")
 
@@ -94,9 +94,9 @@ def modular_pam4(bits):
 # --- Parámetros de transmisión ---
 # TRADE-OFF CENTRAL DEL ESTUDIO: tasa de símbolo vs ancho de banda del canal.
 # El canal de referencia (R=80 ohm, C=5 pF, R*C = 400 ps) tiene un ancho de banda
-# de solo ~0.95 GHz. Por tanto:
-#   * SIN ecualización, el enlace PAM-4 solo es viable si Nyquist (Rs/2) <= ~0.95 GHz,
-#     es decir, hasta ~1.9 GBaud (este es el punto de partida sugerido por el usuario).
+# de ~0.97 GHz. Por tanto:
+#   * SIN ecualización, el enlace PAM-4 solo es viable si Nyquist (Rs/2) <= ~0.97 GHz,
+#     es decir, hasta ~1.93 GBaud (referencia sin ecualizacion).
 #   * CON FFE+CTLE (+DFE) se puede operar a tasas MAYORES recuperando la perdida
 #     mas alla del -3 dB. El "Barrido de Tasa" al final cuantifica esa ganancia.
 #
@@ -112,9 +112,10 @@ sps = 32                    # Muestras por símbolo (sobremuestreo para simulaci
 fs = Rs_pam4 * sps          # Frecuencia de muestreo (Hz)
 ts = 1.0 / fs
 
-# Ancho de banda -3 dB aproximado de la linea RC distribuida de referencia
+# Ancho de banda -3 dB de la linea RC distribuida de referencia (modelo cosh)
 RC_ref = 80.0 * 5e-12
-BW_canal_GHz = 2.4 / (2 * np.pi * RC_ref) / 1e9
+RC_COSH_F3DB_FACTOR = 2.4266937
+BW_canal_GHz = RC_COSH_F3DB_FACTOR / (2 * np.pi * RC_ref) / 1e9
 Rs_limite_sinEQ_GBaud = 2 * BW_canal_GHz   # Nyquist = BW  ->  tasa limite sin ecualizar
 
 # Modular
@@ -336,7 +337,7 @@ diseño_lhs = lhs(2, samples=n_muestras, criterion='center', seed=42)
 omega_z_eval = 2 * np.pi * (1e9 + diseño_lhs[:, 0] * 9e9)
 c_post_eval = -0.4 + diseño_lhs[:, 1] * 0.35
 
-# Canal de referencia (R*C = 400 ps -> BW ~0.95 GHz)
+# Canal de referencia (R*C = 400 ps -> BW ~0.97 GHz)
 R_linea = 80.0
 C_linea = 5e-12
 canal_lti = crear_canal_rc_distribuido(R_linea, C_linea, N=5)

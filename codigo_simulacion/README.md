@@ -1,16 +1,6 @@
-# Recommendation 01 — Channel Model Evolution (Realistic Physics)
+# Simulation Code — Physical Channel and Equalizer Co-Design
 
-Python implementation of **Recommendation 01** (Phase 1, Dr. Elena Ruiz)
-from the document `../recomendaciones_equipo_senior.md`:
-
-> *Replace the theoretical RC line with a transmission line model with
-> dielectric losses (FR-4 / Megtron 6) and skin effect (R(f) and G(f)).
-> This changes the purely **diffusive** behavior of the channel into a
-> real **dispersive** one.*
-> **Deliverable:** comparison of pulse responses and attenuation in dB/inch.
-
-It closes the limitation stated in `../IEEE-conference-template-062824/discusion.tex`
-("RC model without inductance/skin-effect") and the future work item **C3** of the manuscript.
+Python implementation of the physical-channel extension used in the article. It compares the distributed RC baseline with dispersive FR-4 and Megtron 6 transmission-line models including skin-effect and dielectric loss, and then evaluates equalizer co-design over those channels.
 
 ---
 
@@ -31,7 +21,7 @@ conda env create -f environment.yml
 conda activate canal-fisico-rec01
 ```
 
-Minimum dependencies: `numpy`, `matplotlib` (see `requirements.txt`).
+Dependencies: `numpy`, `scipy`, `matplotlib`, and `pyDOE` for archived notebook checkpoints (see `requirements.txt`).
 
 ---
 
@@ -42,12 +32,12 @@ python generar_comparativa.py     # base deliverables (attenuation + pulse)
 python simulacion_ojo.py          # eye + transmitted signal (FFE+CTLE+DFE chain)
 python barrido_tasa_fisico.py     # viable BER rate vs GBaud (30 realizations, 2 criteria)
 python doe_canal_fisico.py        # re-DoE: (w_z,c_post) re-optimized per substrate
-python barrido_ojo_horizontal.py  # HORIZONTAL eye opening: bathtub + jitter (Phase α)
-python coopt_ctle_dfe.py          # joint CTLE+DFE co-optimization (Phase β)
-python coopt_2d_jitter.py         # 2D margin (vertical x horizontal) under jitter (Phase γ)
+python barrido_ojo_horizontal.py  # horizontal eye opening: bathtub + jitter
+python coopt_ctle_dfe.py          # joint CTLE+DFE co-optimization
+python coopt_2d_jitter.py         # 2D margin (vertical x horizontal) under jitter
 ```
 
-`coopt_2d_jitter.py` integrates α+β: it optimizes the EQ for the **2D viable rate** (the rate
+`coopt_2d_jitter.py` integrates the vertical and horizontal margin analyses: it optimizes the EQ for the **2D viable rate** (the rate
 at which the horizontal eye under jitter falls below `W_MIN` UI, gain-invariant).
 It generates `fig_coopt2d_fixed.png`, `fig_contorno_2d.png`, `tabla_coopt2d.csv`,
 `coopt2d_resultados.json`.
@@ -152,9 +142,9 @@ RLC) and `554593` (Celik & Cangellaris, dispersive lines via Padé).
 
 ---
 
-## Suggested next steps (within Phase 1)
+## Optional extensions
 
-1. **Jitter (Rec. 01.2):** inject RJ/DJ at the TX to estimate horizontal eye
+1. **Jitter:** inject RJ/DJ at the TX to estimate horizontal eye
    opening (natural extension of `respuesta_pulso.py`).
-2. **Cross-validation (Rec. 01.3):** export `Zc(f)`/`γ(f)` to Touchstone and
+2. **Cross-validation:** export `Zc(f)`/`γ(f)` to Touchstone and
    correlate with SPICE/ADS — supported by search string **C9**.

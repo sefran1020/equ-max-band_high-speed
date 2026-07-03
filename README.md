@@ -1,9 +1,10 @@
-# repoArticulo — Reproducibility package
+# Equalizer Co-Design Transfer — Reproducibility Package
 
-Article: *Equalization Co-Design for Maximizing Viable Symbol Rate in
-Bandwidth-Limited High-Speed Interconnect Links*
+Article: *When Equalizer Co-Design Does Not Transfer: From Idealized RC to
+Dispersive PCB Interconnects*
 (distributed RC channel + dispersive FR-4/Megtron 6 lines; FFE+CTLE+DFE).
-A **simulation** study (Phase 1), with cross-validation in LTspice.
+A reproducible simulation study with analytical, Touchstone and LTspice
+cross-checks.
 
 This package is **self-contained**: it holds the manuscript, the code that
 generates each figure and table, the intermediate data, and the validation in
@@ -11,9 +12,8 @@ an independent circuit simulator, so that any result is **traceable and
 reproducible** from its source. The exact result→code correspondence is in
 [`TRAZABILIDAD.md`](TRAZABILIDAD.md).
 
-The manuscript is written in English and formatted with Elsevier's
-`elsarticle` document class (numbered / Vancouver reference style) for
-submission to *AEÜ – International Journal of Electronics and Communications*.
+The manuscript is written in English and formatted with the IEEE Access
+LaTeX class (`ieeeaccess`). This repository corresponds to the IEEE Access submission version.
 
 ## Structure
 
@@ -21,13 +21,12 @@ submission to *AEÜ – International Journal of Electronics and Communications*
 repoArticulo/
 ├── README.md                 (this file)
 ├── TRAZABILIDAD.md           figure/table → script → data matrix
-├── LICENSE                   MIT for code; CC BY 4.0 for data/figures/manuscript
-├── .gitignore
 ├── manuscrito/               LaTeX + PDF + bibliography + figures (.png)
-│   ├── elsarticle-IJEC.tex   English manuscript (elsarticle, numbered/Vancouver)
-│   ├── elsarticle-IJEC.pdf   compiled PDF
+│   ├── access.tex            English manuscript (IEEE Access)
+│   ├── access.pdf            compiled PDF
 │   ├── tabla_parametros.tex  master parameter table (\input)
 │   ├── references.bib        bibliography
+│   ├── autores/              author photographs for IEEE biographies
 │   └── fig_*.png             article figures (English)
 ├── codigo_simulacion/        frequency-domain chain (Python) producing the results
 │   ├── *.py                  per-experiment scripts (see TRAZABILIDAD)
@@ -50,15 +49,14 @@ repoArticulo/
 ### 1. Manuscript (PDF)
 ```bash
 cd manuscrito
-pdflatex elsarticle-IJEC && bibtex elsarticle-IJEC && \
-pdflatex elsarticle-IJEC && pdflatex elsarticle-IJEC   # elsarticle + bibtex (elsarticle-num)
-# or simply: latexmk -pdf elsarticle-IJEC.tex
+pdflatex access && bibtex access && \
+pdflatex access && pdflatex access   # IEEE Access + BibTeX
 ```
 
-### 2. Simulation results (Python 3.14)
+### 2. Simulation results (Python 3.11)
 ```bash
 cd codigo_simulacion
-pip install -r requirements.txt        # numpy, scipy, matplotlib
+pip install -r requirements.txt        # numpy, scipy, matplotlib, pyDOE
 python simulacion_ojo.py               # eyes + BER (eye/BER tables)
 python barrido_tasa_fisico.py          # viable rate (rate-reach)
 python sensibilidad_canal.py           # channel sensitivity
@@ -86,23 +84,13 @@ the figure `fig_ltspice_ojos.png` (frequency-domain chain vs LTspice vs
 overlay). It extends the Touchstone cross-check already present in that
 subsection.
 
-## Verified environment
-- Python 3.14 · numpy 2.4 · scipy 1.17 · matplotlib 3.10.
+## Configured environment
+- Python 3.11 recommended; `requirements.txt` declares `numpy>=1.24,<3`, `scipy>=1.10`, `matplotlib>=3.7`, and `pyDOE>=0.3.8`.
+- SciPy is optional and only needed if fitting/interpolation extensions are enabled.
 - LTspice ADI 26.0.2.1 (batch mode `-b`).
-- TeX Live 2025 · elsarticle 3.4c (numbered / `elsarticle-num` style).
+- TeX Live 2025 for the IEEE Access manuscript build.
 
 ## License
-- **Code** (`codigo_simulacion/`, `validacion_ltspice/`): MIT.
-- **Data, figures, and manuscript** (`datos/`, `*.png`, `manuscrito/`):
-  CC BY 4.0.
 
-See [`LICENSE`](LICENSE) for the full terms.
-
-## Citing this package / data availability
-The journal's data policy (Option C) asks for the underlying data and code to
-be deposited in a repository with a persistent identifier and cited in the
-article. To complete this:
-1. Deposit this `repoArticulo/` in **Zenodo** or **Mendeley Data**.
-2. Obtain the assigned **DOI**.
-3. Add the DOI to the manuscript's *Data availability* statement and cite it as
-   a `[dataset]` reference.
+The reproducibility package is released under the MIT License. See
+[`LICENSE`](LICENSE).

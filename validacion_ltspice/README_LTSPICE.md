@@ -2,8 +2,7 @@
 
 **Qualitative and independent** validation of the article's chain in a
 circuit engine (LTspice, a time-domain SPICE solver), distinct from the
-frequency-domain pipeline in Python. It responds to the "cross-validation" requested by
-the reviewer / senior team, in Phase 1 (without hardware).
+frequency-domain pipeline in Python. It provides complementary cross-validation without requiring hardware measurements.
 
 The idea is not to repeat the BER sweep in LTspice (not advisable; see below),
 but rather to **demonstrate that the chain the paper simulates in Python holds up in an
@@ -126,7 +125,7 @@ Python | LTspice | overlaid — the eyes match visually and metrically.)
 Conclusion: an independent circuit engine reproduces the article's chain
 with sub-0.1 % error in the waveform and sub-1 % in the eye opening, on the
 RC channel (central model). The dispersive channel is cross-checked in frequency (<0.6 dB) and
-its `.s2p` + `disp_lines.lib` are the direct bridge to SPICE/ADS in Phase 2. Suitable
+its `.s2p` + `disp_lines.lib` are the direct bridge to SPICE/ADS. Suitable
 as complementary journal validation.
 
 ---

@@ -52,14 +52,14 @@ Paths are relative to this repo: code in `codigo_simulacion/`, data in
 - **In the article:** Section *Results*, subsection *"Model validation and
   physical-channel characterization"*, in the paragraph after Fig.
   `fig:senscanal`, followed by Fig. `fig:ltspice` (`fig_ltspice_ojos.png`).
-  In `manuscrito/elsarticle-IJEC.tex`, the subsection labelled
-  `\label{sec:results}` (the figure carries `\label{fig:ltspice}`).
+  In `manuscrito/access.tex`, the subsection labelled `\label{sec:results}`
+  (the figure carries `\label{fig:ltspice}`).
 - **Reproducible kit:** `validacion_ltspice/` — see `README_LTSPICE.md`.
   Results: RC step 0.0019; RC/CTLE Bode 0.000 dB; dispersive `.ac` vs
   `.s2p` 0.55 dB; RC chain LTspice↔Python RMS 0.09 %; eye Δopening 0.011 V.
 
 ## Environment
 
-- **Python 3.14**, `numpy` / `scipy` / `matplotlib`
+- **Python 3.11 recommended**, `numpy` / `scipy` / `matplotlib` / `pyDOE`
   (`codigo_simulacion/requirements.txt`, `environment.yml`).
 - **LTspice** ADI 26.0.2.1 (batch mode `-b`) for the cross-validation.
