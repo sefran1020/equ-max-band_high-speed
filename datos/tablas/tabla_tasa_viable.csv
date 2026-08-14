@@ -1,25 +1,25 @@
 criterio,canal,long_pulg,config,tasa_viable_GBaud_media,desv,ref_RC_checkpoint
-equal_il,RC (cosh),-,Sin EQ,3.46,0.04,2.79
+equal_il,RC (cosh),-,No EQ,3.46,0.04,2.79
 equal_il,RC (cosh),-,FFE+CTLE,15.21,0.38,9.56
 equal_il,RC (cosh),-,FFE+CTLE+DFE,19.38,0.48,14.11
-equal_il,RC N=5,-,Sin EQ,2.88,0.01,2.79
+equal_il,RC N=5,-,No EQ,2.88,0.01,2.79
 equal_il,RC N=5,-,FFE+CTLE,9.76,0.18,9.56
 equal_il,RC N=5,-,FFE+CTLE+DFE,13.73,0.29,14.11
-equal_il,FR-4,22.9,Sin EQ,4.58,0.11,-
+equal_il,FR-4,22.9,No EQ,4.58,0.11,-
 equal_il,FR-4,22.9,FFE+CTLE,9.31,0.23,-
 equal_il,FR-4,22.9,FFE+CTLE+DFE,9.71,0.23,-
-equal_il,Megtron 6,36.9,Sin EQ,5.16,0.21,-
+equal_il,Megtron 6,36.9,No EQ,5.16,0.21,-
 equal_il,Megtron 6,36.9,FFE+CTLE,10.83,0.28,-
 equal_il,Megtron 6,36.9,FFE+CTLE+DFE,11.88,0.41,-
-fixed,RC (cosh),-,Sin EQ,3.46,0.04,2.79
+fixed,RC (cosh),-,No EQ,3.46,0.04,2.79
 fixed,RC (cosh),-,FFE+CTLE,15.21,0.38,9.56
 fixed,RC (cosh),-,FFE+CTLE+DFE,19.38,0.48,14.11
-fixed,RC N=5,-,Sin EQ,2.88,0.01,2.79
+fixed,RC N=5,-,No EQ,2.88,0.01,2.79
 fixed,RC N=5,-,FFE+CTLE,9.76,0.18,9.56
 fixed,RC N=5,-,FFE+CTLE+DFE,13.73,0.29,14.11
-fixed,FR-4,10.0,Sin EQ,12.75,0.28,-
+fixed,FR-4,10.0,No EQ,12.75,0.28,-
 fixed,FR-4,10.0,FFE+CTLE,14.06,0.31,-
 fixed,FR-4,10.0,FFE+CTLE+DFE,27.19,0.49,-
-fixed,Megtron 6,10.0,Sin EQ,32.0,0.0,-
+fixed,Megtron 6,10.0,No EQ,32.0,0.0,-
 fixed,Megtron 6,10.0,FFE+CTLE,16.27,0.15,-
 fixed,Megtron 6,10.0,FFE+CTLE+DFE,32.0,0.0,-

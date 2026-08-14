@@ -1,0 +1,14 @@
+Compilación recomendada (TeX Live 2024 o posterior):
+
+1. xelatex -no-pdf manuscript.tex
+2. bibtex manuscript
+3. xelatex -no-pdf manuscript.tex
+4. xelatex manuscript.tex
+
+El PDF resultante es manuscript.pdf.
+
+La clase USG.cls proviene de la plantilla Wiley 2026. En esta copia local se
+retiraron tres elementos de demostración incrustados en la clase genérica:
+el logotipo de la revista Allergy, el distintivo Open Access y una URL de DOI
+vacía. La plantilla oficial original permanece sin cambios en
+nvaWiley/WileyDesign.
