@@ -1,7 +1,0 @@
-arquitectura,RC N=5 (equal_il) BW=2.25GHz,FR-4 (equal_il) BW=3.07GHz,Megtron 6 (equal_il) BW=3.52GHz,FR-4 (fixed) BW=8.63GHz,Megtron 6 (fixed) BW=26.88GHz,exponente_p,k,R2,n_puntos_ajuste
-A0 baseline,1.32,1.95,1.95,4.48,11.45*,0.888,0.664,0.9879,4
-A1 wideband poles,1.32,1.95,3.85,5.12,19.68*,0.943,0.756,0.7704,4
-A2 narrowband poles,1.32,2.58,1.95,3.85,6.38,0.575,1.025,0.9041,5
-A3 two zeros,3.22,3.85,5.75,5.12,11.45*,0.296,2.942,0.4172,4
-A4 high DC gain,1.32,1.95,1.95,4.48,11.45*,0.888,0.664,0.9879,4
-A5 eye objective,1.32,2.58,5.75,5.12,10.82,0.684,1.242,0.7277,5

@@ -9,26 +9,19 @@ cross-checks.
 This package is **self-contained**: it holds the manuscript, the code that
 generates each figure and table, the intermediate data, and the validation in
 an independent circuit simulator, so that any result is **traceable and
-reproducible** from its source. The exact result→code correspondence is in
-[`TRAZABILIDAD.md`](TRAZABILIDAD.md).
+reproducible** from its source. 
 
 The manuscript is written in English and prepared as a **new submission** to
 the *International Journal of Circuit Theory and Applications* (Wiley), using
-the official 2026 Wiley LaTeX template (`USG.cls`). The analyses originally
-developed during an earlier IEEE Access review are preserved in
-`codigo_simulacion/revision01/` as scientific provenance and are incorporated
-into the Wiley manuscript.
+the official 2026 Wiley LaTeX template (`USG.cls`). 
 
-Every simulation-result figure in the article is, byte for byte, the output of
-the source listed in `TRAZABILIDAD.md`; none is retouched after being saved.
-The conceptual workflow diagram is the only non-numerical illustration.
+
 
 ## Structure
 
 ```
 equ-max-band_high-speed/
 ├── README.md                 (this file)
-├── TRAZABILIDAD.md           figure/table → script → data matrix
 ├── manuscrito/               Wiley LaTeX source + PDF + bibliography + figures
 │   ├── manuscript.tex        English manuscript (Wiley/IJCTA)
 │   ├── manuscript.pdf        compiled review PDF
@@ -63,6 +56,7 @@ equ-max-band_high-speed/
 ## Reproduce
 
 ### 1. Manuscript (PDF)
+
 ```bash
 cd manuscrito
 xelatex -no-pdf manuscript.tex
@@ -70,10 +64,12 @@ bibtex manuscript
 xelatex -no-pdf manuscript.tex
 xelatex manuscript.tex              # Wiley 2026 template + BibTeX
 ```
+
 The resulting file is `manuscript.pdf`. See `manuscrito/COMPILAR.txt` for the
 same build sequence and template notes.
 
 ### 2. Simulation results (Python 3.11+)
+
 ```bash
 cd codigo_simulacion
 pip install -r requirements.txt        # numpy, scipy, matplotlib, pyDOE
@@ -84,16 +80,20 @@ python validacion_ber_mc.py            # semi-analytical vs Monte Carlo BER vali
 python exportar_touchstone.py          # S-parameters -> datos/touchstone/*.s2p
 # (see TRAZABILIDAD.md for the rest: doe_canal_fisico, coopt_ctle_dfe, estres_jitter, …)
 ```
+
 Figures are written to `codigo_simulacion/figuras/` and copied into the manuscript.
 
 ### 3. Cross-validation in LTspice
+
 Requires LTspice (ADI). Reproduces Bode, the full chain and the eye diagram, and
 cross-checks them against Python:
+
 ```bash
 cd validacion_ltspice
 python correr_ltspice.py               # orchestrates everything (locates LTspice; --ltspice PATH if needed)
 python figura_articulo_ojos.py         # regenerates the manuscript's fig_ltspice_ojos.png
 ```
+
 Details and results in `validacion_ltspice/README_LTSPICE.md`.
 
 ## Where the LTspice cross-validation appears in the Wiley manuscript
@@ -105,6 +105,7 @@ overlay). It extends the Touchstone cross-check already present in that
 subsection.
 
 ## Configured environment
+
 - Python 3.11 recommended; the code was also verified with Python 3.14.4.
 - `requirements.txt` declares `numpy>=1.24,<3`, `scipy>=1.10`, `matplotlib>=3.7`, and `pyDOE>=0.3.8`.
 - SciPy is optional and only needed if fitting/interpolation extensions are enabled.
