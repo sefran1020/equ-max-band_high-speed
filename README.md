@@ -15,8 +15,6 @@ The manuscript is written in English and prepared as a **new submission** to
 the *International Journal of Circuit Theory and Applications* (Wiley), using
 the official 2026 Wiley LaTeX template (`USG.cls`). 
 
-
-
 ## Structure
 
 ```
@@ -33,12 +31,7 @@ equ-max-band_high-speed/
 │   ├── images/               Wiley template assets
 │   └── IJCTA_LaTeX_Source.zip  self-contained submission source package
 ├── codigo_simulacion/        frequency-domain chain (Python) producing the results
-│   ├── *.py                  per-experiment scripts (see TRAZABILIDAD)
-│   ├── revision01/           peer-review analyses retained and used by the article
-│   │   ├── rNcM_*.py         one script per reviewer comment (N = reviewer,
-│   │   │                     M = comment); see revision01/README.md
-│   │   ├── figuras/, tablas/ their outputs
-│   │   └── BITACORA_REVISION01.md  run log and decisions
+│   ├── *.py                  per-experiment scripts 
 │   ├── notebooks/            checkpoint notebooks (fig_bode, PAM-8, throughput)
 │   ├── bitacora_resultados.md  technical log (models, bugs, results)
 │   ├── requirements.txt / environment.yml  environment
